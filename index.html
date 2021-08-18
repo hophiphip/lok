@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <meta 
+          name="viewport" 
+          content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
       <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
       <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+      <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
   </head>
 
   <body style="margin : 0px; overflow: hidden;">
-    <a-scene embedded arjs='sourceType: webcam;'>
+    <div id="scripts">
+        <script src="./js/main.js"></script>
+    </div>
+
+    <a-scene 
+        embedded 
+        arjs='trackingMethod: best; debugUIEnabled: false; patternRatio: 0.5; sourceType: webcam;'
+        renderer="logarithmicDepthBuffer: true;"
+        vr-mode-ui="enabled: false"
+        gesture-detector
+        id="scene">
       
-        <a-marker preset="pattern" type='pattern' url='https://raw.githubusercontent.com/hophiphip/lok/master/data/patt/pattern-lok-marker.patt'>
-            <a-box position='0 0.5 0' material='color: red;' soundhandler></a-box>
+        <a-marker 
+            id="barcode-marker" 
+            type='pattern' 
+            cursor="fuse: false; rayOrigin: mouse" 
+            pmarkerhandler 
+            emitevents="true" 
+            reset="pattern" 
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+            raycaster="objects: .clickable"
+            url='https://raw.githubusercontent.com/hophiphip/lok/master/data/patt/pattern-lok-marker.patt'>
+
+            <a-box
+                id="barcode-model"
+                position='0 0.5 0' 
+                class="clickable"
+                scale="1 1 1"
+                material='color: red;' 
+                gesture-handler="minScale: 0.25; maxScale: 10"
+                soundhandler>
+            </a-box>
         </a-marker>
 
         <a-entity camera></a-entity>
