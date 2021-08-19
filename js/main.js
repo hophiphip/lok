@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 
     marker.addEventListener('markerFound', (e) => {
         isFound = true;
-        // Log marker position in intervals
+
         let cameraPosition = camera.object3D.position;
         let markerPosition = marker.object3D.position;
         let distance = cameraPosition.distanceTo(markerPosition)

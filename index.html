@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
       <meta 
           name="viewport" 
           content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -15,9 +16,10 @@
         <script src="./js/main.js"></script>
     </div>
 
+    <!-- NOTE: Adjust 'patternRatio: ...;' (previously was 0.5 and made things worse) --> 
     <a-scene 
         embedded 
-        arjs='trackingMethod: best; debugUIEnabled: false; patternRatio: 0.5; sourceType: webcam;'
+        arjs='trackingMethod: best; debugUIEnabled: false; sourceType: webcam;'
         renderer="logarithmicDepthBuffer: true;"
         vr-mode-ui="enabled: false"
         gesture-detector
@@ -31,8 +33,8 @@
             emitevents="true" 
             reset="pattern" 
             smooth="true"
-            smoothCount="10"
-            smoothTolerance=".01"
+            smoothCount="0"
+            smoothTolerance=".0001"
             smoothThreshold="5"
             raycaster="objects: .clickable"
             url='https://raw.githubusercontent.com/hophiphip/lok/master/data/patt/pattern-lok-marker.patt'>
@@ -46,6 +48,15 @@
                 gesture-handler="minScale: 0.25; maxScale: 10"
                 soundhandler>
             </a-box>
+
+            <a-text 
+                id="barcode-text" 
+                value="Inital barcode"  
+                color = "purple" 
+                position = "1 -3 0" 
+                rotation="270 0 0" 
+                scale = "2 2 2">
+            </a-text>
         </a-marker>
 
         <a-entity camera></a-entity>
