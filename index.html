@@ -24,6 +24,10 @@
         vr-mode-ui="enabled: false"
         gesture-detector
         id="scene">
+
+        <a-assets>
+            <a-asset-item id="model" src="./data/models/scene.gltf"></a-asset-item>
+        </a-assets>
       
         <a-marker 
             id="barcode-marker" 
@@ -39,6 +43,7 @@
             raycaster="objects: .clickable"
             url='https://raw.githubusercontent.com/hophiphip/lok/master/data/patt/pattern-lok-marker.patt'>
 
+            <!--
             <a-box
                 id="barcode-model"
                 position='0 0.5 0' 
@@ -48,7 +53,9 @@
                 gesture-handler="minScale: 0.25; maxScale: 10"
                 soundhandler>
             </a-box>
-
+            -->
+            
+            <!--
             <a-text 
                 id="barcode-text" 
                 value="Inital barcode"  
@@ -57,6 +64,18 @@
                 rotation="270 0 0" 
                 scale = "2 2 2">
             </a-text>
+            -->
+
+            <a-entity scale="1 1 1">
+                <a-entity mmd='outline: true' afterglow:2.0;>
+                    <a-entity 
+                        scale="0.1 0.1 0.1" 
+                        position="0 0 0"
+                        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+                        gltf-model="#model">
+                    </a-entity>
+                </a-entity>
+            </a-entity>
         </a-marker>
 
         <a-entity camera></a-entity>
